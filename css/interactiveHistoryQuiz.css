@@ -1,0 +1,49 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(14, 25, 71);
+    margin: 0;
+}
+
+div {
+    margin-top: 5%;
+    border-radius: 30px;
+    background-color: rgb(27, 39, 95);
+    width: 100%;
+}
+
+h1,
+h2,
+p {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    display: inline;
+}
+
+label {
+    text-align: center;
+    display: block;
+    margin: 10px;
+    color: #fff;
+}
+
+button {
+    width: 60%;
+    display: block;
+    margin: 20px auto;
+}
+
+a {
+    color:rgb(180, 212, 207)
+}
