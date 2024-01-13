@@ -1,14 +1,15 @@
 body {
-  font-family: Arial, sans-serif;
+  background-color: grey;
+  font-family: 'Atari', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  padding: 0;
-  background-color: #333;
-  color: white;
-  transition: background-color 0.5s, color 0.5s;
 }
 
 header {
-  background-color: #121212;
+  background-color: white;
   padding: 10px;
   text-align: center;
 }
