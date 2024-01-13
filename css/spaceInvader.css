@@ -12,6 +12,40 @@ canvas {
   background-color: #000;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  color: white;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+header {
+  background-color: #121212;
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #121212;
+  padding: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+section {
+  padding: 20px;
+  background-color: #000;
+}
+
 @font-face {
   font-family: 'Atari';
   src: local('Atari'), url('https://fonts.cdnfonts.com/s/7524/AtariSmall.woff') format('woff');
