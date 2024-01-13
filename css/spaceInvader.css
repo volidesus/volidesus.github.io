@@ -9,7 +9,7 @@ body {
 }
 
 canvas {
-  background-color: #121212;
+  background-color: #000;
 }
 
 header {
@@ -22,7 +22,9 @@ nav {
   display: flex;
   justify-content: center;
   background-color: #121212;
+  border-radius: 15px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 nav a {
@@ -34,7 +36,8 @@ nav a {
 
 section {
   padding: 20px;
-  background-color: #121212;
+  background-color: #000;
+  border-radius: 15px;
 }
 
 @font-face {
