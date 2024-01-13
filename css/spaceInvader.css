@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background-color: grey;
   font-family: 'Atari', sans-serif;
   display: flex;
   justify-content: center;
@@ -9,16 +9,11 @@ body {
 }
 
 canvas {
-  background-color: #000;
-}
-
-body.dark-mode {
-  background-color: #333;
-  color: white;
+  background-color: #121212;
 }
 
 header {
-  background-color: #121212;
+  background-color: white;
   padding: 10px;
   text-align: center;
 }
@@ -39,7 +34,7 @@ nav a {
 
 section {
   padding: 20px;
-  background-color: #000;
+  background-color: #121212;
 }
 
 @font-face {
