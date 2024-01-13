@@ -1,7 +1,6 @@
 body {
   background-color: grey;
   font-family: 'Atari', sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
