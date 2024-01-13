@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background-color: #555;
+  background-color: #121212;
   padding: 10px;
   text-align: center;
 }
@@ -16,7 +16,7 @@ header {
 nav {
   display: flex;
   justify-content: center;
-  background-color: #444;
+  background-color: #121212;
   padding: 10px;
 }
 
@@ -29,5 +29,5 @@ nav a {
 
 section {
   padding: 20px;
-  background-color: #555;
+  background-color: #121212;
 }
