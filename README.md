@@ -1,3 +1,3 @@
 # Welcome to Volidesus
 ## Arcade game turned browser game using JS, HTML, and CSS
-##<p align="center">![spaceInvaderGameplay](https://github.com/volidesus/volidesus.github.io/assets/156522750/085e8036-1ec3-4725-9fa9-78aceacf4381)</p>
+##<p align="center">![spaceInvaderGameplay](https://github.com/volidesus/volidesus.github.io/imageOrIcon/spaceInvaderGameplay.png)</p>
