@@ -44,7 +44,7 @@ function action(key) {
 }
 
 let laserCooldown = false;
-let pressedKeys = { "a": false, "d": false };
+let pressedKeys = { "ArrowLeft": false, "ArrowRight": false };
 document.addEventListener('keydown', function (event) {
   if (event.key in pressedKeys) {
     pressedKeys[event.key] = true;
@@ -260,7 +260,7 @@ function handleWin() {
 const possibleMuntzSounds = [ufoHighpitch, ufoLowpitch]
 let muntzSoundToPlay;
 function updateCanvas() {
-  action(translateBooleanToInt[pressedKeys["d"]] - translateBooleanToInt[pressedKeys["a"]]);
+  action(translateBooleanToInt[pressedKeys["ArrowRight"]] - translateBooleanToInt[pressedKeys["ArrowLeft"]]);
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   drawWall();
