@@ -34,3 +34,9 @@ section {
   background-color: #000;
   border-radius: 15px;
 }
+
+section p {color:white}
+@font-face {
+  font-family: 'Atari';
+  src: local('Atari'), url('https://fonts.cdnfonts.com/s/7524/AtariSmall.woff') format('woff');
+}
