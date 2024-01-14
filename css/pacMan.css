@@ -47,6 +47,7 @@ section {
   padding: 20px;
   background-color: #000;
   border-radius: 15px;
+  justify-content: center;
 }
 
 @font-face {
