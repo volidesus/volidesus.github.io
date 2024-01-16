@@ -4,18 +4,19 @@ const tileSize = 20;
 let tiles = ['xxxxxxxxxxxxxxxxxxxxxxxxxxxx','xooooooooooooxxoooooooooooox',
 'xoxxxxoxxxxxoxxoxxxxxoxxxxox','xOxxxxoxxxxxoxxoxxxxxoxxxxOx','xoxxxxoxxxxxoxxoxxxxxoxxxxox',
 'xoooooooooooooooooooooooooox','xoxxxxoxxoxxxxxxxxoxxoxxxxox','xoxxxxoxxoxxxxxxxxoxxoxxxxox',
-'xooooooxxooooxxooooxxoooooox','xxxxxxoxxxxxoxxoxxxxxoxxxxxx','xxxxxxoxxxxxoxxoxxxxxoxxxxxx',
-'xxxxxxoxxooooooooooxxoxxxxxx','xxxxxxoxxoxxxxxxxxoxxoxxxxxx','xxxxxxoxxoxxxxxxxxoxxoxxxxxx',
-'ooooooooooxxxxxxxxoooooooooo','xxxxxxoxxoxxxxxxxxoxxoxxxxxx','xxxxxxoxxoxxxxxxxxoxxoxxxxxx',
-'xxxxxxoxxooooooooooxxoxxxxxx','xxxxxxoxxoxxxxxxxxoxxoxxxxxx','xxxxxxoxxoxxxxxxxxoxxoxxxxxx',
+'xooooooxxooooxxooooxxoooooox','xxxxxxoxxxxx xx xxxxxoxxxxxx','xxxxxxoxxxxx xx xxxxxoxxxxxx',
+'xxxxxxoxx          xxoxxxxxx','xxxxxxoxx xxxxxxxx xxoxxxxxx','xxxxxxoxx x      x xxoxxxxxx',
+'      o   x      x   o      ','xxxxxxoxx x      x xxoxxxxxx','xxxxxxoxx xxxxxxxx xxoxxxxxx',
+'xxxxxxoxx          xxoxxxxxx','xxxxxxoxx xxxxxxxx xxoxxxxxx','xxxxxxoxx xxxxxxxx xxoxxxxxx',
 'xooooooooooooxxoooooooooooox','xoxxxxoxxxxxoxxoxxxxxoxxxxox','xoxxxxoxxxxxoxxoxxxxxoxxxxox',
 'xOooxxoooooooo oooooooxxooOx','xxxoxxoxxoxxxxxxxxoxxoxxoxxx','xxxoxxoxxoxxxxxxxxoxxoxxoxxx',
 'xooooooxxooooxxooooxxoooooox','xoxxxxxxxxxxoxxoxxxxxxxxxxox','xoxxxxxxxxxxoxxoxxxxxxxxxxox',
 'xoooooooooooooooooooooooooox','xxxxxxxxxxxxxxxxxxxxxxxxxxxx'];
-let ghostPositionX = [13,11.5,13.5,15.5]
-let ghostPositionY = [11,13.5,14.5,13.5]
-let ghostSprite = [3,1,1,1]
-let ghostReleased = [true,false,false,false]
+let ghostPositionX = [13,11.5,13.5,15.5];
+let ghostPositionY = [11,13.5,14.5,13.5];
+let ghostReleased = [true,false,false,false];
+let ghostSprite = [3,1,1,1];
+let ghostState = 1;
 
 canvas.width = tiles[0].length * tileSize;
 canvas.height = tiles.length * tileSize+200;
@@ -93,11 +94,16 @@ function drawGUI() {
 ====================================================================================================
 ====================================================================================================*/
 
+const scatterTargetsX = [1,26,26,1]
+const scatterTargetsY = [1,1,29,29]
 function updateGhostsPosition() {
   const sprites = [4, 3, 2, 1];
   for (let ghostID = 0; ghostID < 4; ghostID++) {
-    if (ghostReleased[ghostID]) {
-      let path = findPath(ghostPositionX[ghostID], ghostPositionY[ghostID], Math.floor(x / tileSize), Math.floor(y / tileSize));
+    if (ghostPositionY[ghostID] == 13.5 || ghostPositionY[ghostID] == 14.5) {
+      ghostPositionY[ghostID] = (ghostPositionY[ghostID]==13.5)?14.5:13.5;
+      ghostSprite[ghostID] = (ghostPositionY[ghostID]==13.5)?1:2;
+    } else {
+      let path = findPath(ghostPositionX[ghostID], ghostPositionY[ghostID], setTarget(ghostID,'x'), setTarget(ghostID,'y'));
       for (let otherGhostID = 0; otherGhostID < 4; otherGhostID++) {
         if (otherGhostID !== ghostID && ghostPositionX[ghostID] === ghostPositionX[otherGhostID] && ghostPositionY[ghostID] === ghostPositionY[otherGhostID]) {
           const newX = ghostPositionX[ghostID] - checkX(direction);
@@ -111,14 +117,48 @@ function updateGhostsPosition() {
 
       if (path.length > 1) {
         ghostSprite[ghostID] = sprites[getDirection(ghostPositionX[ghostID], ghostPositionY[ghostID], path[1].x, path[1].y)];
-        if (path[1].x==Math.floor(x / tileSize)&&path[1].y==Math.floor(y / tileSize) ||
-        ghostPositionX[ghostID]==Math.floor(x / tileSize)&&ghostPositionY[ghostID]==Math.floor(y / tileSize)) {
+        if (path[1].x==Math.floor(x / tileSize)&&path[1].y==Math.floor(y / tileSize) || ghostPositionX[ghostID]==Math.floor(x / tileSize)&&ghostPositionY[ghostID]==Math.floor(y / tileSize)) {
           if(lives<=0){window.top.location.reload(true)}; playerDeath();
-        } ghostPositionX[ghostID] = path[1].x;
+        }
+        
+        ghostPositionX[ghostID] = path[1].x;
         ghostPositionY[ghostID] = path[1].y;
       }
     }
   }
+}
+
+function setTarget(ghostID,findWhich) {
+  if (updateGhostState()=='chase') {
+    let targetX, targetY;
+    targetX = Math.floor(x / tileSize);
+    targetY = Math.floor(y / tileSize);
+    if (ghostID === 1) {
+      targetX = Math.floor(x / tileSize) + checkX(direction) * 2;
+      targetY = Math.floor(y / tileSize) + checkY(direction) * 2;
+    } else if (ghostID === 2) {
+      targetX = Math.floor(x / tileSize) + checkX(direction) * 4;
+      targetY = Math.floor(y / tileSize) + checkY(direction) * 4;
+    } else if (ghostID === 3 && (ghostPositionX[ghostID]-Math.floor(x / tileSize))+(ghostPositionY[ghostID]-Math.floor(y / tileSize)) <= 8) {
+      targetX = scatterTargetsX[3];
+      targetY = scatterTargetsY[3];
+    } 
+    
+    if (findWhich=='x') return targetX;
+    if (findWhich=='y') return targetY;
+  } else if (updateGhostState()=='scatter') {
+    if (findWhich=='x') return scatterTargetsX[ghostID];
+    if (findWhich=='y') return scatterTargetsY[ghostID];
+  }
+}
+
+const ghostStates = [0,7,20,7,20,5,20,5]
+function updateGhostState() {
+  let states = 0;
+  let statesIndex = 0;
+  while (states < ghostState) {
+    states += ghostStates[statesIndex]; statesIndex++;
+  } return Number.isInteger(statesIndex / 2) ? 'scatter' : 'chase';
 }
 
 function getDirection(fromX, fromY, toX, toY, currentDirection) {
@@ -210,6 +250,7 @@ let column = Math.floor(x / tileSize);
 let row = Math.floor(y / tileSize);
 let pressedKeys = {"a": false, "d": false, "s": false, "w": false};
 document.addEventListener('keydown', function (event) {
+  if (readyUp||playerDeathAnim) return;
   pressedKeys['a'] = (event.key === 'ArrowLeft' && tiles[row][column - 1] !== 'x');
   pressedKeys['d'] = (event.key === 'ArrowRight' && tiles[row][column + 1] !== 'x');
   pressedKeys['w'] = (event.key === 'ArrowUp' && tiles[row - 1][column] !== 'x');
@@ -293,6 +334,7 @@ function resetPlayerAndGhostPositions() {
 
 
 function start() {
+  ghostState = 1;
   updatePlayer = setInterval(updatePlayerPosition, 100);
   updateGhosts = setInterval(updateGhostsPosition, 500);
   updateGhostsFrame = setInterval(function () {
@@ -314,3 +356,4 @@ function start() {
   }, 5000);
 } updateDrawing();
 setTimeout(function(){start();readyUp=false},2000)
+setInterval(function(){ghostState++}, 1000);
