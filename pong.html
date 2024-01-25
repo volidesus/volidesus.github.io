@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="./css/pong.css">
   </head>
   <body>
-    <div>
-      <div id="modes">
-        <a><a href="#PvP">PvP</a></li>
-        <a><a href="#PvE1">PvE Difficulty 1</a></li>
-        <a><a href="#PvE2">PvE Difficulty 2</a></li>
-        <a><a href="#PvE3">PvE Difficulty 3</a></li>
+    <header>
+      <h1>Space Invader</h1>
+    </header>
+    <nav>
+      <a href="spaceInvader.html">Space Invader</a>
+      <a href="pacMan.html">Pac-Man</a>
+      <a href="pong.html">Pac-Man</a>
+    </nav>
+    <section>
+      <div>
+        <div id="modes">
+          <a><a href="#PvP">PvP</a></li>
+          <a><a href="#PvE1">PvE Difficulty 1</a></li>
+          <a><a href="#PvE2">PvE Difficulty 2</a></li>
+          <a><a href="#PvE3">PvE Difficulty 3</a></li>
+        </div>
+        <canvas id="game" width="700" height="550"></canvas>
       </div>
-      <canvas id="game" width="700" height="550"></canvas>
-    </div>
-    <script src="./javaScript/pong.js"></script>
+      <script src="./javaScript/pong.js"></script>
+    </section>
 </body>
 </html>
