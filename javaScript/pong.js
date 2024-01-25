@@ -39,8 +39,8 @@ function drawFrame() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = 'white';
   if (!isStart) {context.font = '35px Atari';context.fillText('Click Any Button to Start', 110, 50)}
-  else if (p1Point>=1) {context.font = '35px Atari';context.fillText('Player 1 Won', 215, 50)}
-  else if (p2Point>=1) {context.font = '35px Atari';context.fillText('Player 2 Won', 215, 50)}
+  else if (p1Point>=10) {context.font = '35px Atari';context.fillText('Player 1 Won', 215, 50)}
+  else if (p2Point>=10) {context.font = '35px Atari';context.fillText('Player 2 Won', 215, 50)}
   else {context.font = '55px Atari';context.fillText(`${p1Point}:${p2Point}`, 295, 50)}
 
   context.fillStyle = 'white';
