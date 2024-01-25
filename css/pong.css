@@ -1,0 +1,30 @@
+body {
+  background-color: #000;
+  font-family: 'Atari', sans-serif;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100vh;
+  margin: 0;
+}
+
+#modes {
+  display: flex;
+  list-style-type:none
+}
+
+a {
+  margin-bottom: 15px;
+  margin-right: 25px;
+  font-size: large;
+  color: white;
+}
+
+canvas {
+  background-color: #000;
+}
+
+@font-face {
+  font-family: 'Atari';
+  src: local('Atari'), url('https://fonts.cdnfonts.com/s/7524/AtariSmall.woff') format('woff');
+}
