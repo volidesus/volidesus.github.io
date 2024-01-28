@@ -18,6 +18,9 @@ let ghostReleased = [true,false,false,false];
 let ghostSprite = [3,1,1,1];
 let ghostState = 1;
 
+let ghostIsScared = [false,false,false,false];
+let ghostScaredTimer= 0;
+
 canvas.width = tiles[0].length * tileSize;
 canvas.height = tiles.length * tileSize+200;
 
@@ -52,8 +55,18 @@ function drawPlayer() {
 
 let ghostsFrame = 0;
 function drawGhosts() {
-  for (let i = 0; i < 4; i++) {
-    context.drawImage(ghosts, (ghostSprite[i] * 2-ghostsFrame-1) * 20, i * 20, 14, 14, ghostPositionX[i] * tileSize, ghostPositionY[i] * tileSize+100, 25, 25);
+  for (let ghostID = 0; ghostID < 4; ghostID++) {
+    if (ghostIsScared[ghostID]) {
+      if (ghostScaredTimer>=2) {
+        context.drawImage(ghosts, ghostsFrame * 20, 80, 14, 14, 
+        ghostPositionX[ghostID] * tileSize, ghostPositionY[ghostID] * tileSize+100, 25, 25)
+      } else {
+        context.drawImage(ghosts, ghostsFrame * 60, 80, 14, 14, 
+        ghostPositionX[ghostID] * tileSize, ghostPositionY[ghostID] * tileSize+100, 25, 25)
+      }
+    } else {
+    context.drawImage(ghosts, (ghostSprite[ghostID] * 2-ghostsFrame-1) * 20, ghostID * 20, 14, 14, 
+    ghostPositionX[ghostID] * tileSize, ghostPositionY[ghostID] * tileSize+100, 25, 25)}
   }
 } 
 
@@ -71,8 +84,11 @@ function drawOrb() {
 
         if (row === Math.floor(y / tileSize) && col === Math.floor(x / tileSize)) {
           if (tiles[Math.floor(y / tileSize)][Math.floor(x / tileSize)]==='o') {points += 10};
-          if (tiles[Math.floor(y / tileSize)][Math.floor(x / tileSize)]==='O') {points += 50};
-          tiles[row] = tiles[row].substring(0, col) + ' ' + tiles[row].substring(col + 1);
+          if (tiles[Math.floor(y / tileSize)][Math.floor(x / tileSize)]==='O') {points += 50;
+            ghostScaredTimer = 9;
+            for (let ghostID = 0; ghostID < 4; ghostID++) {
+              ghostIsScared[ghostID] = true}
+          }; tiles[row] = tiles[row].substring(0, col) + ' ' + tiles[row].substring(col + 1);
         }
       }
     }
@@ -100,10 +116,10 @@ function updateGhostsPosition() {
   const sprites = [4, 3, 2, 1];
   for (let ghostID = 0; ghostID < 4; ghostID++) {
     if (ghostPositionY[ghostID] == 13.5 || ghostPositionY[ghostID] == 14.5) {
-      ghostPositionY[ghostID] = (ghostPositionY[ghostID]==13.5)?14.5:13.5;
-      ghostSprite[ghostID] = (ghostPositionY[ghostID]==13.5)?1:2;
+      ghostPositionY[ghostID] = (ghostPositionY[ghostID] == 13.5) ? 14.5 : 13.5;
+      ghostSprite[ghostID] = (ghostPositionY[ghostID] == 13.5) ? 1 : 2;
     } else {
-      let path = findPath(ghostPositionX[ghostID], ghostPositionY[ghostID], setTarget(ghostID,'x'), setTarget(ghostID,'y'));
+      let path = findPath(ghostPositionX[ghostID], ghostPositionY[ghostID], setTarget(ghostID, 'x'), setTarget(ghostID, 'y'));
       for (let otherGhostID = 0; otherGhostID < 4; otherGhostID++) {
         if (otherGhostID !== ghostID && ghostPositionX[ghostID] === ghostPositionX[otherGhostID] && ghostPositionY[ghostID] === ghostPositionY[otherGhostID]) {
           const newX = ghostPositionX[ghostID] - checkX(direction);
@@ -116,9 +132,20 @@ function updateGhostsPosition() {
       }
 
       if (path.length > 1) {
+        let oppositeDirection = 3;
+        if (ghostSprite[ghostID]==1) {oppositeDirection=2}
+        else if (ghostSprite[ghostID]==2) {oppositeDirection=1}
+        else if (ghostSprite[ghostID]==3) {oppositeDirection=4}
+
         ghostSprite[ghostID] = sprites[getDirection(ghostPositionX[ghostID], ghostPositionY[ghostID], path[1].x, path[1].y)];
-        if (path[1].x==Math.floor(x / tileSize)&&path[1].y==Math.floor(y / tileSize) || ghostPositionX[ghostID]==Math.floor(x / tileSize)&&ghostPositionY[ghostID]==Math.floor(y / tileSize)) {
-          if(lives<=0){window.top.location.reload(true)}; playerDeath();
+        if (!ghostIsScared[ghostID]) {
+          if (path[1].x==Math.floor(x / tileSize)&&path[1].y==Math.floor(y / tileSize) || ghostPositionX[ghostID]==Math.floor(x / tileSize)&&ghostPositionY[ghostID]==Math.floor(y / tileSize)) {
+            if(lives<=0){window.top.location.reload(true)}; playerDeath()
+          }
+        } else {
+          if (path[1].x==Math.floor(x / tileSize)&&path[1].y==Math.floor(y / tileSize) || ghostPositionX[ghostID]==Math.floor(x / tileSize)&&ghostPositionY[ghostID]==Math.floor(y / tileSize)) {
+            points += 100
+          }
         }
         
         ghostPositionX[ghostID] = path[1].x;
@@ -129,7 +156,9 @@ function updateGhostsPosition() {
 }
 
 function setTarget(ghostID,findWhich) {
-  if (updateGhostState()=='chase') {
+  if (ghostIsScared[ghostID]){
+
+  } else if (updateGhostState()=='chase') {
     let targetX, targetY;
     targetX = Math.floor(x / tileSize);
     targetY = Math.floor(y / tileSize);
@@ -142,8 +171,20 @@ function setTarget(ghostID,findWhich) {
     } else if (ghostID === 3 && (ghostPositionX[ghostID]-Math.floor(x / tileSize))+(ghostPositionY[ghostID]-Math.floor(y / tileSize)) <= 8) {
       targetX = scatterTargetsX[3];
       targetY = scatterTargetsY[3];
-    } 
-    
+    }
+
+    if (!isValidTile(targetX,targetY)) {
+      let moveInstance = 1;
+      let dir = -90;
+      while (true) {
+        if (isValidTile(targetX+checkX(dir)*moveInstance,targetY+checkY(dir)*moveInstance)) {
+          targetX+=checkX(dir)*moveInstance;
+          targetY+=checkY(dir)*moveInstance; break
+        } else if (dir == 180) {dir = -180;moveInstance++}
+        dir += 90;
+      }
+    }
+
     if (findWhich=='x') return targetX;
     if (findWhich=='y') return targetY;
   } else if (updateGhostState()=='scatter') {
@@ -356,4 +397,5 @@ function start() {
   }, 5000);
 } updateDrawing();
 setTimeout(function(){start();readyUp=false},2000)
-setInterval(function(){ghostState++}, 1000);
+setInterval(function(){ghostState++;
+if (ghostScaredTimer!==0) {ghostScaredTimer--}}, 1000);
