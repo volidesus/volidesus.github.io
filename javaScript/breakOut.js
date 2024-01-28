@@ -79,13 +79,10 @@ function updateBall() {
           const distanceFromCenterY = nextY - tileCenterY;
         
           if (Math.abs(distanceFromCenterX) > Math.abs(distanceFromCenterY)) {
-            // Ball hits the side of the tile
             ballSpeedX = -ballSpeedX;
           } else {
-            // Ball hits the top or bottom of the tile
             ballSpeedY = -ballSpeedY;
-          }
-          break;
+          } break;
         }        
       }
     }
@@ -95,6 +92,13 @@ function updateBall() {
   bY += ballSpeedY;
 
   if (bY - 8 > canvas.height) {
+    window.top.location.reload(true);
+  } let remainingTiles = 0;
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+      if (tiles[row][col] === 'x') remainingTiles++}
+  } if (remainingTiles === 0) {
+    alert('You Won!');
     window.top.location.reload(true);
   }
 }
@@ -114,8 +118,11 @@ function drawTiles() {
 
 function drawFrame() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = 'black';
-  context.fillRect(5, 5, canvas.width - 10, canvas.height - 5);
+  context.fillStyle = 'red'; context.fillRect(0, 100, canvas.width, 60);
+  context.fillStyle = 'orange'; context.fillRect(0, 160, canvas.width, 60);
+  context.fillStyle = 'green'; context.fillRect(0, 220, canvas.width, 60);
+  context.fillStyle = 'yellow'; context.fillRect(0, 280, canvas.width, 60);
+  context.fillStyle = 'black'; context.fillRect(5, 5, canvas.width - 10, canvas.height - 5);
 
   drawTiles();
   context.fillStyle = 'white';
