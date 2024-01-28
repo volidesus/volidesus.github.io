@@ -12,6 +12,11 @@ let tiles = [
   'xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxx'
 ];
 
+
+const highBounce = new Audio('./soundOrSong/paddle.m4a');
+const midBounce = new Audio('./soundOrSong/wall.m4a');
+const lowBounce = new Audio('./soundOrSong/brick.m4a');
+
 let speedPlayer = 0;
 const acceleration = 0.9;
 const translateBooleanToInt = { true: 1, false: 0 };
@@ -32,13 +37,16 @@ function updateBall() {
   const nextY = bY + ballSpeedY;
 
   if (nextX - 8 < 0 || nextX + 8 > canvas.width) {
+    midBounce.play();
     ballSpeedX = -ballSpeedX;
   }
   if (nextY - 8 < 0) {
+    midBounce.play();
     ballSpeedY = -ballSpeedY;
   }
 
   if (nextY + 8 > canvas.height - 10 && nextX >= pX && nextX <= pX + 100) {
+    highBounce.play();
     const collidePoint = nextX - (pX + 50);
     const normalizedCollidePoint = collidePoint / 50;
     const bounceAngle = normalizedCollidePoint * Math.PI / 3;
@@ -71,6 +79,7 @@ function updateBall() {
           ballRight >= tileLeft &&
           ballLeft <= tileRight
         ) {
+          lowBounce.play();
           tiles[row] = tiles[row].substring(0, col) + ' ' + tiles[row].substring(col + 1);
         
           const tileCenterX = tileLeft + tileWidth / 2;
@@ -152,5 +161,5 @@ document.addEventListener('keyup', function (event) {
 
 setInterval(function () {
   playerMovement(translateBooleanToInt[pressedKeys.ArrowRight] - translateBooleanToInt[pressedKeys.ArrowLeft], 1);
-  updateBall();
+  if (isStart) updateBall();
 }, 16);
