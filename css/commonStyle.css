@@ -1,0 +1,53 @@
+body {
+  background-color: #757575;
+  font-family: 'Atari', sans-serif;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  background-color: #121212;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 0px 0px 0px;
+}
+
+header img {height: 65px}
+header h1 {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif}
+header a {color:white}
+
+a {text-decoration: none}
+p {color:white}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  padding: 10px;
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+section {
+  padding: 20px;
+  background-color: #000;
+  border-radius: 15px 15px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: 'Atari';
+  src: local('Atari'), url('https://fonts.cdnfonts.com/s/7524/AtariSmall.woff') format('woff');
+}

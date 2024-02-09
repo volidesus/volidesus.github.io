@@ -1,0 +1,15 @@
+#modes {
+  display: flex;
+  list-style-type:none
+}
+
+div a {
+  margin-bottom: 15px;
+  margin-right: 25px;
+  font-size: large;
+  color: white;
+}
+
+canvas {
+  background-color: #000;
+}
