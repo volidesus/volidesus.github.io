@@ -19,9 +19,12 @@ header {
 header img {height: 65px}
 header h1 {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif}
 header a {color:white}
-
 a {text-decoration: none}
-p {color:white}
+
+p {
+  color:white;
+  font-size: 20px;
+}
 
 nav {
   display: flex;
