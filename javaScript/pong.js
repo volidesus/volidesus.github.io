@@ -63,7 +63,7 @@ let ballSpeed = 4;
 function updateBall() {
   const currentTime = Date.now();
   const timeDifference = currentTime - lastHitTime;
-  const speedMultiplier = timeDifference / 1750
+  const speedMultiplier = timeDifference / 3500+0.5;
 
   const angleInRadians = (bDir * Math.PI) / 180;
 
@@ -76,19 +76,26 @@ function updateBall() {
     const normalizedDistance = distance / 25;
     const bounceAngle = normalizedDistance * 45;
     bDir = nextX - 10 < 10 ? 180 - bDir + bounceAngle : 180 - bDir - bounceAngle;
+
+    // Set a constant speed after collision
+    ballSpeed = 6; // Adjust this value as needed
+
     bX += Math.cos((bDir * Math.PI) / 180) * ballSpeed * speedMultiplier;
     bY += Math.sin((bDir * Math.PI) / 180) * ballSpeed * speedMultiplier;
     lastHitTime = currentTime;
   } else if (nextY - 10 < 0 || nextY + 10 > canvas.height) {
     bDir = -bDir;
     bY = nextY - 10 < 0 ? 10 : canvas.height - 10;
-    lastHitTime = currentTime;
   } else if (nextX < -20 || nextX > canvas.width + 20) {
     if (nextX < -20) p2Point++;
     else p1Point++;
     bDir = Math.random() * 270;
     bX = canvas.width / 2;
     bY = canvas.height / 2;
+
+    // Set a constant speed after collision
+    ballSpeed = 6; // Adjust this value as needed
+
     lastHitTime = currentTime;
   } else {
     bX = nextX;
