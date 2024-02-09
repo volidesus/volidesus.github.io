@@ -1,0 +1,33 @@
+#feedbackcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  font-family: Segoe UI;
+}
+
+#feedback {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #0000001a;
+  width: 80%;
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+#feedback .inputs,
+#feedback button {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#feedback button {
+  background-color: #090a20;
+  color: #fff;
+  cursor: pointer;
+}
