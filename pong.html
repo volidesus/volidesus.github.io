@@ -19,33 +19,42 @@
       <a href="breakOut.html">Break-Out</a>
       <a href="tetris.html">Tetris</a>
     </nav>
-    <section>
-      <div>
-        <div id="modes">
-          <a><a href="#PvP">PvP</a></li>
-          <a><a href="#PvE1">PvE Difficulty 1</a></li>
-          <a><a href="#PvE2">PvE Difficulty 2</a></li>
-          <a><a href="#PvE3">PvE Difficulty 3</a></li>
+    <div id="background">
+      <div id="foreground">
+        <div>
+          <div id="modes">
+            <a><a href="#PvP">PvP</a></li>
+            <a><a href="#PvE1">PvE Difficulty 1</a></li>
+            <a><a href="#PvE2">PvE Difficulty 2</a></li>
+            <a><a href="#PvE3">PvE Difficulty 3</a></li>
+          </div>
+          <canvas id="game" width="700" height="550"></canvas>
         </div>
-        <canvas id="game" width="700" height="550"></canvas>
-      </div>
-      <div id="info">
-        <h2>CONTROLS</h2>
-        <p>Player One Up: W, Player One Down: S,<br>
-        Player Two Up: Arrow Up, Player Two Down: Arrow Down</p>
+        <div id="info">
+          <h2>CONTROLS</h2>
+          <p>Player One Up: W, Player One Down: S,<br>
+          Player Two Up: Arrow Up, Player Two Down: Arrow Down</p>
+    
+          <h2>HOW TO PLAY</h2>
+          <p>Each player controls a paddle, which can move <br>
+          vertically along one axis, usually up and down. Players <br>
+          use this movement to intercept and hit the ball. <br><br>
   
-        <h2>HOW TO PLAY</h2>
-        <p>Each player controls a paddle, which can move <br>
-        vertically along one axis, usually up and down. Players <br>
-        use this movement to intercept and hit the ball. <br><br>
-
-        The objective of Pong is to score points by getting the <br>
-        ball past your opponent's paddle. When a player fails to <br>
-        return the ball, the opponent earns a point. The game <br>
-        continues until one player reaches a 10 scores.
-        </p>
+          The objective of Pong is to score points by getting the <br>
+          ball past your opponent's paddle. When a player fails to <br>
+          return the ball, the opponent earns a point. The game <br>
+          continues until one player reaches a 10 scores.
+          </p>
+        </div>
+        <script src="./javaScript/pong.js"></script>
       </div>
-      <script src="./javaScript/pong.js"></script>
-    </section>
-</body>
+    </div>
+    <footer>
+      <p style="margin-right: 50px;">Keep in mind this is an open source project <br>
+      and can be accesed through <a href="https://github.com/volidesus/volidesus.github.io">github.com</a></p>
+      <p>Consider checking out my other website! <br>
+        <a href="https://ttanks.github.io">TankersTank</a> | 
+        <a href="https://github.com/TTanks">Github</a></p>
+    </footer>
+  </body>
 </html>
