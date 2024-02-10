@@ -19,31 +19,40 @@
       <a href="breakOut.html">Break-Out</a>
       <a href="tetris.html">Tetris</a>
     </nav>
-    <section>
-      <canvas id="game" width="700" height="890"></canvas>
-      <div id="info">
-        <h2>CONTROLS</h2>
-        <p>Left: Left Arrow, Right: Right Arrow, Shoot: Space</p>
+    <div id="background">
+      <div id="foreground">
+        <canvas id="game" width="700" height="890"></canvas>
+        <div id="info">
+          <h2>CONTROLS</h2>
+          <p>Left: Left Arrow, Right: Right Arrow, Shoot: Space</p>
+    
+          <h2>HOW TO PLAY</h2>
+          <p>The object of the game is, basically, to shoot the <br>
+          invaders with your laser base while avoiding their shots <br>
+          and preventing an invasion. Amassing a high score is a further <br>
+          objective and one that must be prioritised against your continued survival. <br><br> 
   
-        <h2>HOW TO PLAY</h2>
-        <p>The object of the game is, basically, to shoot the <br>
-        invaders with your laser base while avoiding their shots <br>
-        and preventing an invasion. Amassing a high score is a further <br>
-        objective and one that must be prioritised against your continued survival. <br><br> 
-
-        Each game screen starts with five rows of 11 invaders. <br>
-        The bottom 2 rows score 10 points per large invader, the middle <br>
-        2 rows 20 points for each medium invader and the top row scores 30 <br>
-        points for each small invader . This makes each screen worth a <br>
-        total of 990 points. <br><br>
-        
-        The score for each screen can be dramatically <br>
-        increased by the tactical destruction of the 'mystery' value spaceships <br>
-        that frequently fly from one side of the screen to the other. <br>
-        Temporary sanctuary can be sought beneath the 4 base shelters.
-        </p>
+          Each game screen starts with five rows of 11 invaders. <br>
+          The bottom 2 rows score 10 points per large invader, the middle <br>
+          2 rows 20 points for each medium invader and the top row scores 30 <br>
+          points for each small invader . This makes each screen worth a <br>
+          total of 990 points. <br><br>
+          
+          The score for each screen can be dramatically <br>
+          increased by the tactical destruction of the 'mystery' value spaceships <br>
+          that frequently fly from one side of the screen to the other. <br>
+          Temporary sanctuary can be sought beneath the 4 base shelters.
+          </p>
+        </div>
+        <script src="./javaScript/spaceInvader.js"></script>
       </div>
-      <script src="./javaScript/spaceInvader.js"></script>
-    </section>
+    </div>
+    <footer>
+      <p style="margin-right: 50px;">Keep in mind this is an open source project <br>
+      and can be accesed through <a href="https://github.com/volidesus/volidesus.github.io">github.com</a></p>
+      <p>Consider checking out my other website! <br>
+        <a href="https://ttanks.github.io">TankersTank</a> | 
+        <a href="https://github.com/TTanks">Github</a></p>
+    </footer>
   </body>
 </html>
