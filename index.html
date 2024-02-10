@@ -19,25 +19,34 @@
       <a href="breakOut.html">Break-Out</a>
       <a href="tetris.html">Tetris</a>
     </nav>
-    <section>
-      <div style="text-align: center;">
-        <h2>About</h2>
-        <p>Welcome to Volidesus, <br>
-        arcade games turned browser game using JS, HTML, and CSS. <br>
-        Try out five different arcade games made in between 1970-2000s, <br>
-        keep in mind that this is a WIP (Work In Proggress). <br><br>
-      
-        <h2>Contact</h2>
-        <div id="feedbackcontainer">
-          <form onsubmit="sendEmail(); reset(); return false" id="feedback">
-            <input type="text" id="name" class="inputs" placeholder="Enter your name">
-            <input type="email" id="email" class="inputs" placeholder="Enter your email">
-            <textarea id="message" rows="4" class="inputs" placeholder="Tell us about your experience"></textarea>
-            <button type="submit">Submit</button>
-          </form>
+    <div id="background">
+      <div id="foreground">
+        <div style="text-align: center;">
+          <h2>About</h2>
+          <p>Welcome to Volidesus, <br>
+          arcade games turned browser game using JS, HTML, and CSS. <br>
+          Try out five different arcade games made in between 1970-2000s, <br>
+          keep in mind that this is a WIP (Work In Proggress). <br><br>
+        
+          <h2>Contact</h2>
+          <div id="feedbackcontainer">
+            <form onsubmit="sendEmail(); reset(); return false" id="feedback">
+              <input type="text" id="name" class="inputs" placeholder="Enter your name">
+              <input type="email" id="email" class="inputs" placeholder="Enter your email">
+              <textarea id="message" rows="4" class="inputs" placeholder="Tell us about your experience"></textarea>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+          <script src="./javaScript/indexCode.js"></script>
         </div>
-        <script src="./javaScript/indexCode.js"></script>
       </div>
-    </section>
+    </div>
+    <footer>
+      <p style="margin-right: 50px;">Keep in mind this is an open source project <br>
+      and can be accesed through <a href="https://github.com/volidesus/volidesus.github.io">github.com</a></p>
+      <p>Consider checking out my other website! <br>
+        <a href="https://ttanks.github.io">TankersTank</a> | 
+        <a href="https://github.com/TTanks">Github</a></p>
+    </footer>
   </body>
 </html>
