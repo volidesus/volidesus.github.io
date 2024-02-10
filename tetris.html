@@ -19,20 +19,29 @@
       <a href="breakOut.html">Break-Out</a>
       <a href="tetris.html">Tetris</a>
     </nav>
-    <section>
-      <canvas id="game" width="901" height="725"></canvas>
-      <div id="info">
-        <h2>CONTROLS</h2>
-        <p>Left: A, Right: D, <br>
-        Turn: W, Turn Down: S</p>
-  
-        <h2>HOW TO PLAY</h2>
-        <p>Tetris is played by using the pieces to create as many complete <br>
-        horizontal rows of blocks without empty space, but if the Tetriminos <br>
-        surpass the Skyline the game is over!
-        </p>
+    <div id="background">
+      <div id="foreground">
+        <canvas id="game" width="901" height="725"></canvas>
+        <div id="info">
+          <h2>CONTROLS</h2>
+          <p>Left: A, Right: D, <br>
+          Turn: W, Turn Down: S</p>
+    
+          <h2>HOW TO PLAY</h2>
+          <p>Tetris is played by using the pieces to create as many complete <br>
+          horizontal rows of blocks without empty space, but if the Tetriminos <br>
+          surpass the Skyline the game is over!
+          </p>
+        </div>
+        <script src="./javaScript/tetris.js"></script>
       </div>
-      <script src="./javaScript/tetris.js"></script>
-    </section>
+    </div>
+    <footer>
+      <p style="margin-right: 50px;">Keep in mind this is an open source project <br>
+      and can be accesed through <a href="https://github.com/volidesus/volidesus.github.io">github.com</a></p>
+      <p>Consider checking out my other website! <br>
+        <a href="https://ttanks.github.io">TankersTank</a> | 
+        <a href="https://github.com/TTanks">Github</a></p>
+    </footer>
   </body>
 </html>
