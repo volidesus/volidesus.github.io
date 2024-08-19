@@ -210,11 +210,11 @@ function drawWall() {
   }
 }
 
-let highScore = localStorage.getItem('highScore') || 0;
+let highScore = localStorage.getItem('spaceInvaderHighScore') || 0;
 function updateHighScore() {
   if (points > highScore) {
     highScore = points;
-    localStorage.setItem('highScore', highScore);
+    localStorage.setItem('spaceInvaderHighScore', highScore);
   }
 }
 
