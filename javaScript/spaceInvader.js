@@ -46,6 +46,10 @@ function action(key) {
 let laserCooldown = false;
 let pressedKeys = { "ArrowLeft": false, "ArrowRight": false };
 document.addEventListener('keydown', function (event) {
+  if(event.keyCode == 32 && event.target == document.body) {
+    event.preventDefault();
+  }
+
   if (event.key in pressedKeys) {
     pressedKeys[event.key] = true;
   } else if (event.key == ' ' && laserCooldown == false) {
@@ -218,7 +222,7 @@ function updateHighScore() {
   }
 }
 
-let lives = 2;
+let lives = 3;
 function drawGUI() {
   context.font = '35px Atari';
   const formattedScore = String(points).padStart(4, '0');
@@ -232,10 +236,10 @@ function drawGUI() {
   context.fillStyle = '#41e063';
   context.fillRect(0, 800, 700, 3)
 
-  context.fillText(lives+1, 50, 840);
+  context.fillText(lives, 50, 840);
   for (let i = 0; i < lives; i++) {
     context.drawImage(player, 110-i*-50, 843, 30, -30)
-  } if (lives < 0) window.top.location.reload(true);
+  } if (lives <= -1) window.top.location.reload(true);
 }
 
 function checkWin() {
