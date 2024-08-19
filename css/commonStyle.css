@@ -1,5 +1,6 @@
 body {
-  background-image: url('../imageOrIcon/volidesusBG.png');
+  background-image: url('../imageOrIcon/background.png');
+  background-size: 80vh;
   background-repeat: repeat;
   font-family: 'Atari', sans-serif;
   justify-content: center;
