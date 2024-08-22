@@ -19,4 +19,4 @@ Ingame screenshot of Tetris
 
 # License
 The code of this website is licensed under the MIT license.\
-Pull-requests will be reviewed and accepted, please keep your code simple, short and understandable! thank you for all your support
+Pull-requests will be reviewed and accepted, please keep your code simple, short and understandable! Thank you for all your support!
