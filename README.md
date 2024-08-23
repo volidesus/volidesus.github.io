@@ -1,6 +1,6 @@
 # Volidesus
 # What is this?
-Arcade games in between 1970s and 1990s turned browser game using JS, HTML, and CSS.\
+Volidesus is the recreation of arcade games made in between 1970s and 1990s in the form of a browser game. This programs uses Javascript, HTMl, and CSS.
 
 # Games
 - Space Invader (1978)
